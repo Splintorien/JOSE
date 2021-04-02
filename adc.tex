@@ -1,0 +1,167 @@
+\documentclass[french]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[useregional]{datetime2}
+\usepackage[francais=guillemets]{csquotes}
+\usepackage{lipsum}
+\DTMlangsetup[en-US]{showdayofmonth=false}
+\usepackage[T1]{fontenc}
+
+\newcommand{\rfcId}{14071789}
+\newcommand{\rfcTitle}{JOSÉ - Json Objet Sans Effort}
+\newcommand{\rfcAuthor}{Louis Gombert \& Mathis Chapuis}
+\newcommand{\rfcDate}{1er Avril 2021}
+\newcommand{\rfcInstitution}{SIA INSA Lyon}
+
+% TABLE OF CONTENT
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\contentsname}{Table de contenu}
+\renewcommand{\abstractname}{Abstrait}
+
+% MARGINS
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad}
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	left=30mm,
+	top=30mm,
+	bottom=30mm,
+	right=30mm
+}
+\setlength{\leftskip}{17pt}
+
+% HEADER AND FOOTER
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[L]{ADC \rfcId}
+\fancyhead[C]{\rfcTitle}
+\fancyhead[R]{\rfcDate}
+\fancyfoot[L]{\rfcAuthor} 
+\fancyfoot[C]{Standards Track} 
+\fancyfoot[R]{[Page \thepage] \\} 
+\renewcommand{\headrulewidth}{0pt} 
+\renewcommand{\footrulewidth}{0pt} 
+\setlength{\headheight}{13.6pt}
+
+% FIRST PAGE
+\usepackage{multicol}
+
+% FONT
+\usepackage{inconsolata}
+\renewcommand{\familydefault}{\ttdefault}
+
+\begin{document}
+
+\begin{multicols}{2}
+	\begin{flushleft}
+		Force de Travail d'Ingénierie de l'Internet \\
+		INTERNET-BROUILLON \rfcId
+	\end{flushleft}
+\columnbreak
+	\begin{flushright}
+		\rfcAuthor \\
+		\rfcInstitution \\
+		\rfcDate
+	\end{flushright}
+\end{multicols}
+
+\vspace{1in} { \center \rfcTitle \\ } \vspace{1in}
+
+
+\begin{abstract}
+	Pour défendre le drapeau tricolore dans le monde du numérique et faire face à l'hyperpuissance américaine qui fait parler de \textquote{cluster} ou de \textquote{hashtag} à des dijonnais, nous proposons un nouveau format de données pour faire renouer la \textquote{French Tech} avec la langue de ses ancêtres. Ainsi, l'utilisation du JOSÉ remplace le format anglo-saxon \textquote{json} dans tous les logiciels écrits dans l'hexagone.
+\end{abstract}
+
+\section{L'objet JOSÉ}{
+    Le format JOSÉ permet la définition d'un format de données, utilisable dans nos logiciels publics, afin de soutenir la langue et le savoir-faire de notre pays. Pour définir un objet JOSÉ, il faut respecter toutes les règles suivantes.
+    \paragraph{Début et fin d'un objet} {
+        La déclaration du début d'un objet se fait en utilisant le mot-clé \textquote{OBJET}. La fin sera signalée \textquote{TEJBO}, soit \textquote{OBJET} à l'envers. Des termes explicites et lisibles pour remplacer les accolades barbares, pure création des informaticiens analphabètes.}
+        
+    \paragraph{Propriétés} {
+        Dans un objet JOSÉ sont définis des attributs sous la forme de couples clé-valeur séparés par deux points. Chaque définition d'attribut commence par un tiret long \textquote{\textemdash}, utilisé dans les dialogues de nos romans favoris. La clé de l'attribut est une chaîne de caractères entre guillemets (français), et la valeur est un des trois types primitifs définis dans la partie suivante, ou bien un tableau ou autre objet. Attention : si la valeur est un entier supérieur à un, le nom de la clé doit y être accordé en nombre, en respectant les règles du pluriel français : on dira des hibou\textbf{x} mais des clou\textbf{s}. Des pneu\textbf{s} mais des aveu\textbf{x}. Vous avez compris.
+        
+        Les propriétés sont séparées par des points-virgule. Cependant, la dernière propriété déroge à la règle et se termine par un point. La toute première clé de l'objet doit avoir une majuscule, mais on n'en mettra pas pour les autres.
+    }
+    \paragraph{Genre de l'objet} {
+        En français, tout objet a un genre (à la différence de la langue de nos amis de l'autre côté de la Manche). Il est donc obligatoire de genrer l'objet au moment de sa définition. Ce genre apparaît juste après le mot-clé \textquote{OBJET} de début de définition, \textquote{Masculin} ou \textquote{Féminin}.
+    }
+}
+
+\section{Les types primitifs} {
+    Le JOSÉ reprend tous les types primitifs utilisés par son homologue anglais. Ainsi, nous suggérons une nouvelle notation pour chacun d'eux.
+    \paragraph{L'entier}{
+L'entier : il est noté en toutes lettres, correctement accordé et orthographié. En cas de mauvaise écriture, une erreur est levée au chargement de l'objet, ou à la traduction vers un autre standard. Il est important de noter que les écritures normales ou après la réforme orthographique sont toutes deux valides. }
+    \paragraph{Le booléen}{ Il est noté soit \textquote{Vrai}, soit \textquote{Faux}.}
+    \paragraph{La chaîne de caractères}{La chaîne de caractère : elle est entourée de guillemets français: \textquote{}. Tous les accents doivent être conservés dans la chaîne de caractère, ce qui implique un encodage obligatoire en FMEUC-Huit ou FUC-Huit (Format de Métamorphose d'Ensemble Universel de Caractères). De même, l'usage commun de la majuscule et du point doit être respecté pour avoir une phrase bien construite dans toute chaîne de plusieurs mots utilisée comme valeur. Une erreur de ponctuation dans la chaîne lève une erreur au chargement de l'objet. Il est également possible de créer une citation pouvant contenir des erreurs ou entorses aux règles du français. Pour créer une citation, il faut la placer entre quatre guillemets français, comme suit : \textquote{\textquote{L'histoire de rebond de l'épidémie, c'est une fantaisie}}. Il est important de noter que pour ne pas avoir une sur-utilisation et un abus des citations dans les documents JOSÉ, la taille totale des citations d'un objet ne peux excéder la taille total des phrases. L'écriture romaine des nombres, comme \textquote{croix vé bâton} est encore en discussion. }
+    \paragraph{La valeur nulle}{La valeur nulle : elle est accordée en genre avec la clé qui est un nom au singulier. Si aucune clé n'est liée à cette valeur nulle (si elle est mise dans un tableau par exemple), le masculin singulier \textquote{nul} sera la valeur par défaut.}
+}
+
+\section{Les tableaux} {
+    Les tableaux peuvent contenir n'importe quel type (un autre tableau, objet ou type primitif). Différentes règles et  --- bien sûr --- exceptions s'appliquent.
+    \paragraph{Déclaration}{
+Le début d'un tableau sera défini par le mot-clé \textquote{DÉBUT} (les crochets étant jugés trop impersonnels et peu utilisés dans la langue française), et la fin d'un tableau par le mot-clé \textquote{FIN} (voir justification ci-dessus)}
+}
+	\paragraph{Éléments}{
+Les éléments d'un tableau sont séparés par des points-virgules. Le dernier élément du tableau, à la différence de l'objet, ne se termine pas par un point.
+}
+
+\section{Pot pourri de règles et exceptions à la règle} {
+    Il est de notoriété publique que les règles de la langue française existent pour mieux pouvoir y déroger. Dans cet esprit, nous définissons des contraintes de manière à rendre le format JOSÉ aussi tordu que la langue de Lacrim.
+    
+    Ci-dessous sont définies les différentes exceptions qu'il est impératif de respecter avec le JOSÉ. Chaque règle non respectée lève une erreur.
+    
+    \paragraph{Entier supérieur à un} {
+        Si dans un objet, on définit une valeur entière supérieure à un, la clé correspondante devra être mise au pluriel.
+    }
+    
+    \paragraph{Absence de mots anglais} {
+        Il est important de rester en toute circonstance en adéquation avec la culture française. De ce fait, tout mot anglais est banni du format JOSÉ, que ce soit au sein d'une clé ou d'une valeur. Chaque mot de vocabulaire utilisé est comparé à un dictionnaire.
+    }
+    
+    \paragraph{Les tirets du bas} {
+        Les tirets du bas (ou tiret du huit pour Josie de la compta) sont interdits d'utilisation au sein du document.
+    }
+    
+    \paragraph{Échapper un caractère} {
+        Il est possible d'échapper un caractère spécial, afin par exemple de réaliser une tabulation ou un retour à la ligne. Le caractère d'échappement \textquote{\textbackslash} n'est plus utilisé, car il est très peu pratique de réaliser au clavier la combinaison \textquote{ALT GR + huit}. À la place, c'est le mot \textquote{ÉCHAPPER} qui sera utilisé pour échapper un caractère (exemple : \textquote{ÉCHAPPER n} pour un retour à la ligne). Si vous avez bien suivi, afin d'afficher le mot \textquote{ÉCHAPPER} en majuscule, il faudra écrire \textquote{ÉCHAPPER ÉCHAPPER}.
+    }
+    \paragraph{Ponctuation} {
+        Si les Albionnais ne mettent pas d'espace après les guillemets de début, avant ceux de fin, ou après un point d'exclamation ou d'interrogation, il est en revanche essentiel de respecter cette règle dans le standard JOSÉ. Ainsi, il faut mettre :
+        \begin{itemize}
+            \item Une espace avant et après un guillemet, un tiret, un point virgule, deux-points, un point d'interrogation et un point d'exclamation.
+            \item Une espace après un point, une parenthèse fermante et une virgule.
+            \item Une espace avant une parenthèse ouvrante.
+        \end{itemize}
+    }
+    \paragraph{Majuscules} {
+        Comme dit précédemment, la première propriété d'un objet doit être marquée d'une majuscule au début de la clé. Il est aussi possible dans une chaîne de caractère de mettre une majuscule au début d'un nom propre. La syntaxe d'un nom propre ne sera pas vérifiée, et vous pourrez écrire toutes les fautes d'orthographes que vous souhaitez. Cependant, il est interdit d'insérer une majuscule au milieu d'un mot, excepté pour les mot-clés.
+    }
+}
+
+\section{Le savoir-vivre à la française} {
+    le JOSÉ ne peut pas être chargé ou enregistré vers un fichier un premier Mai, ou un vendredi après 16h. Toute mention des termes \textquote{grève}, \textquote{manifestation} ou \textquote{RTT} entraînera la levée d'une exception et l'annonce d'une marche contre le pouvoir en place jeudi prochain à dix heures.
+}
+
+\section{Exemple d'utilisation} {
+\begin{verbatim}
+OBJET Masculin
+    — « Confinement » : Vrai ;
+    — « vaccins » : huit millions quatre mille neuf cent cinquante-huit ;
+    — « restrictions » :
+        OBJET Féminin
+            — « Écoles ouvertes » : Faux ;
+            — « départements confinés » : 
+                DÉBUT « Seine-Maritime » ; « Eure » ; « Rhône » FIN
+        TEJOB ;
+    — «motivation» : nulle.
+TEJOB
+\end{verbatim}
+}
+\end{document}
